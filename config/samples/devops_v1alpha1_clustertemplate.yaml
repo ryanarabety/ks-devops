@@ -1,0 +1,59 @@
+apiVersion: devops.kubesphere.io/v1alpha3
+kind: ClusterTemplate
+metadata:
+  name: clustertemplate-sample
+spec:
+  parameters:
+    - name: cloneURL
+      description: What is your repository URL you want to clone?
+      type: string # ignorable
+      validation:
+        expression: "matches()"
+        message: "Please input a correct URL."
+    - name: revision
+      description: Which revision do you want to clone from?
+      default: "main" # Valid JSON value
+    - name: buildOnly
+      description: Do we really need build stage only?
+      default: false # Valid JSON value
+      type: bool
+  template: | # Go template
+    pipeline {
+        agent {
+            kubernetes {
+            inheritFrom 'gradle'
+                containerTemplate {
+                    name 'gradle'
+                    image 'gradle:7.3.3-jdk11'
+                }
+            }
+        }
+        stages {
+            stage('Checkout') {
+                steps {
+                    git branch: '$(.params.revision)', url: '$(.params.cloneURL)'
+                }
+            }
+            stage('Gradle Check') {
+                steps {
+                    container('gradle') {
+                        sh 'gradle check'
+                    }
+                }
+            }
+            stage('Gradle Build') {
+                steps {
+                    container('gradle') {
+                        sh 'gradle build -x test'
+                    }
+                }
+            }
+            $(if ne .params.buildOnly "true")
+            stage('Archive Assets') {
+                steps {
+                    archiveArtifacts '**/build/libs/*.jar'
+                }
+            }
+            $(end)
+        }
+    }

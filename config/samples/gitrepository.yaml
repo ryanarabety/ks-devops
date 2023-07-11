@@ -1,0 +1,9 @@
+apiVersion: devops.kubesphere.io/v1alpha3
+kind: GitRepository
+metadata:
+  name: gitrepository
+  namespace: testxb4m8
+spec:
+  provider: github
+  owner: linuxsuren
+  repo: test

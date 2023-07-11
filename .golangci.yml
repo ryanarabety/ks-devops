@@ -1,0 +1,148 @@
+# golangci-lint configuration from https://golangci-lint.run/usage/configuration/
+# options for analysis running
+run:
+  # default concurrency is a available CPU number
+  concurrency: 4
+
+  # timeout for analysis, e.g. 30s, 5m, default is 1m
+  timeout: 8m
+
+  skip-dirs:
+    - .git
+    - .github
+    - bin
+    - docs
+    - hack
+  skip-files:
+    - cmd/allinone/app/entrypoint.go
+    - cmd/apiserver/app/server.go
+    - cmd/controller/app/server.go
+    - cmd/tools/jwt/app/configmap_updater.go
+    - cmd/tools/jwt/app/jwt_root.go
+    - cmd/tools/jwt/app/jwt_root_test.go
+    - controllers/devopscredential/devopscredential_controller.go
+    - controllers/devopsproject/devopsproject_controller.go
+    - controllers/pipeline/pipeline_controller.go
+    - controllers/suite_test.go
+    - pkg/api/devops/v1alpha1/register.go
+    - pkg/api/devops/v1alpha1/s2ibinary_types_test.go
+    - pkg/api/devops/v1alpha1/s2ibuilder_types.go
+    - pkg/api/devops/v1alpha1/s2ibuilder_types_test.go
+    - pkg/api/devops/v1alpha1/s2ibuildertemplate_types_test.go
+    - pkg/api/devops/v1alpha1/s2irun_types.go
+    - pkg/api/devops/v1alpha1/s2irun_types_test.go
+    - pkg/api/devops/v1alpha2/types.go
+    - pkg/api/devops/v1alpha3/pipeline_types.go
+    - pkg/api/types.go
+    - pkg/apiserver/apiserver.go
+    - pkg/apiserver/authentication/oauth/oauth_options.go
+    - pkg/jwt/token/issuer.go
+    - pkg/jwt/token/jwt.go
+    - pkg/apiserver/filters/requestinfo.go
+    - pkg/apiserver/query/types.go
+    - pkg/apiserver/request/context.go
+    - pkg/apiserver/request/context_test.go
+    - pkg/apiserver/request/requestinfo.go
+    - pkg/apiserver/runtime/runtime.go
+    - pkg/client/devops/build.go
+    - pkg/client/devops/credential.go
+    - pkg/client/devops/fake/fakedevops.go
+    - pkg/client/devops/jenkins/build.go
+    - pkg/client/devops/jenkins/constants.go
+    - pkg/client/devops/jenkins/credential.go
+    - pkg/client/devops/jenkins/folder.go
+    - pkg/client/devops/jenkins/internal/bitbucket.go
+    - pkg/client/devops/jenkins/internal/git.go
+    - pkg/client/devops/jenkins/internal/github.go
+    - pkg/client/devops/jenkins/internal/gitlab.go
+    - pkg/client/devops/jenkins/internal/svn.go
+    - pkg/client/devops/jenkins/jenkins.go
+    - pkg/client/devops/jenkins/job.go
+    - pkg/client/devops/jenkins/pipeline.go
+    - pkg/client/devops/jenkins/pipeline_internal.go
+    - pkg/client/devops/jenkins/pipeline_model_converter.go
+    - pkg/client/devops/jenkins/pipeline_test.go
+    - pkg/client/devops/jenkins/project.go
+    - pkg/client/devops/jenkins/project_pipeline.go
+    - pkg/client/devops/jenkins/pure_request.go
+    - pkg/client/devops/jenkins/request.go
+    - pkg/client/devops/jenkins/triggers/genericwebhook.go
+    - pkg/client/devops/jenkins/utils.go
+    - pkg/client/devops/pipeline.go
+    - pkg/client/devops/project.go
+    - pkg/client/devops/project_pipeline.go
+    - pkg/client/k8s/fake_client.go
+    - pkg/client/k8s/kubernetes.go
+    - pkg/client/k8s/null_client.go
+    - pkg/client/s3/fake/fakes3.go
+    - pkg/config/config.go
+    - pkg/constants/constants.go
+    - pkg/informers/informers.go
+    - pkg/informers/null_informers.go
+    - pkg/kapis/devops/v1alpha2/devops.go
+    - pkg/kapis/devops/v1alpha2/pipeline_sonar.go
+    - pkg/kapis/devops/v1alpha2/register.go
+    - pkg/kapis/devops/v1alpha2/s2ibinary.go
+    - pkg/kapis/oauth/handler.go
+    - pkg/models/devops/common.go
+    - pkg/models/devops/devops.go
+    - pkg/models/devops/devops_test.go
+    - pkg/models/devops/project.go
+    - pkg/models/devops/project_credential_handler.go
+    - pkg/models/devops/project_pipeline_sonar_handler.go
+    - pkg/server/errors/errors.go
+    - pkg/server/options/options.go
+    - pkg/server/params/params.go
+    - pkg/utils/idutils/id_utils.go
+    - pkg/client/cache/simple_cache.go
+    - pkg/kapis/devops/v1alpha2.handler.go
+    - pkg/client/s3/s3.go
+    - pkg/utils/reflectutils/deep.go
+    - pkg/utils/hash.go
+    - pkg/apiserver/authentication/options/authenticate_options.go
+    - pkg/client/cache/redis.go
+    - pkg/models/devops/s2ibinary_handler.go
+    - pkg/client/devops/jenkins/options.go
+    - pkg/client/devops/jenkins/role.go
+    - pkg/client/devops/role.go
+    - pkg/api/devops/v1alpha3/devopsproject_types.go
+    - pkg/client/devops/jenkins/internal/pull_request.go
+    - controllers/fake_controller.go
+    - controllers/s2irun/s2irun_controller.go
+    - pkg/client/s3/interface.go
+    - pkg/client/k8s/options.go
+    - pkg/models/devops/jkerror.go
+    - pkg/client/devops/jenkins/devops.go
+    - pkg/utils/reflectutils/reflect.go
+    - pkg/api/devops/v1alpha1/s2ibinary_type.go
+    - pkg/client/devops/interface.go
+    - pkg/models/resources/v1alpha3/devops/devops.go
+    - pkg/models/resources/v1alpha3/interface.go
+    - pkg/apiserver/query/field.go
+    - cmd/controller/app/options/options.go
+    - cmd/tools/jwt/app/kubernetes.go
+    - cmd/apiserver/app/options/options.go
+    - pkg/kapis/oauth/register.go
+    - pkg/apiserver/authentication/authenticators/bearertoken/bearertoken.go
+    - pkg/apiserver/authentication/request/anonymous/anonymous.go
+    - pkg/client/cache/options.go
+    - pkg/api/devops/v1alpha1/s2ibuildertemplate_types.go
+    - pkg/api/devops/v1alpha1/s2ibinary_types.go
+    - pkg/client/cache/cache.go
+issues:
+  exclude:
+    - EXC0012
+    - SA1019
+  exclude-use-default: false
+linters:
+  enable:
+    - revive # replacement for golint
+
+linters-settings:
+  revive:
+    enable-all-rules: false
+    severity: error
+    rules:
+      - name: package-comments
+        severity: warning
+        disabled: true

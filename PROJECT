@@ -1,0 +1,19 @@
+domain: kubesphere.io
+repo: kubesphere.io/devops
+resources:
+- group: devops
+  kind: Pipeline
+  version: v1alpha3
+- group: devops
+  kind: PipelineRun
+  version: v1alpha3
+- group: devops
+  kind: Template
+  version: v1alpha1
+- group: devops
+  kind: ClusterTemplate
+  version: v1alpha1
+- group: gitops
+  kind: Application
+  version: v1alpha1
+version: "2"
